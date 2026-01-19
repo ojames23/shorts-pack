@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <title>Shorts Pack</title>
 </head>
 <body>
+
   <h1>Shorts Pack</h1>
   <p>YouTube Shorts içerik üreticileri için başlık, açıklama ve hashtag üretir.</p>
+
+  <form id="toolForm">
+    <div>
+      <label>Video konusu:</label><br>
+      <input type="text" id="topic" placeholder="Örn: Kediler neden mırlar?" required>
+    </div>
+
+    <br>
+
+    <div>
+      <label>Ton:</label><br>
+      <select id="tone">
+        <option>Bilgilendirici</option>
+        <option>Komik</option>
+        <option>Gizemli</option>
+        <option>Motivasyon</option>
+        <option>Şaşırtıcı</option>
+      </select>
+    </div>
+
+    <br>
+
+    <div>
+      <label>Dil:</label><br>
+      <select id="language">
+        <option>TR</option>
+        <option>EN</option>
+      </select>
+    </div>
+
+    <br>
+
+    <button type="submit">Üret</button>
+  </form>
+
+  <div id="result" style="margin-top:30px;"></div>
+
 </body>
 </html>

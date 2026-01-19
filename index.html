@@ -45,137 +45,136 @@
 
   <div id="result" style="margin-top:30px;"></div>
 
-  <script>
-    const templates = {
-      "Bilgilendirici": {
-        titles: [
-          "{topic} hakkında bilmen gereken 3 şey",
-          "{topic} gerçekten nedir?",
-          "{topic} neden bu kadar önemli?"
-        ],
-        descriptions: [
-          "Bu videoda {topic} hakkında bilmen gereken en önemli noktaları kısa ve net şekilde anlattım.",
-          "{topic} ile ilgili en çok merak edilen soruların cevapları bu videoda.",
-          "{topic} düşündüğünden çok daha önemli olabilir."
-        ],
-        hooks: [
-          "{topic} hakkında çoğu kişi bunu bilmiyor.",
-          "Bu bilgiyi öğrendikten sonra {topic}’ya bakışın değişecek.",
-          "60 saniyede {topic} gerçeği."
-        ]
-      },
-      "Komik": {
-        titles: [
-          "{topic} ama komik versiyonu 😅",
-          "{topic} böyle olsaydı… 😂",
-          "{topic} beklediğim gibi çıkmadı"
-        ],
-        descriptions: [
-          "{topic} hakkında bu kadar güleceğimi ben de beklemiyordum 😄",
-          "Bu video tamamen eğlence amaçlıdır 😅",
-          "{topic} konusu ciddi ama biz biraz dağıttık 😂"
-        ],
-        hooks: [
-          "{topic} böyle olamaz ya 😅",
-          "{topic} görünce koptum 😂",
-          "{topic} = tam bir kaos"
-        ]
-      },
-      "Gizemli": {
-        titles: [
-          "{topic} hakkında kimsenin konuşmadığı gerçek…",
-          "{topic} ile ilgili çok tuhaf bir şey var",
-          "{topic} sandığın gibi olmayabilir"
-        ],
-        descriptions: [
-          "{topic} ile ilgili ortaya çıkan bu detay gerçekten garip…",
-          "Bu videoyu izledikten sonra {topic} hakkında fikrin değişebilir.",
-          "{topic} ile ilgili herkesin atladığı bir nokta var."
-        ],
-        hooks: [
-          "{topic} ile ilgili çok garip bir şey var…",
-          "{topic} hakkında sana kimse bunu söylemedi.",
-          "{topic} sandığın gibi değil."
-        ]
-      },
-      "Motivasyon": {
-        titles: [
-          "{topic} hayatını değiştirebilir",
-          "{topic} ile yeni bir başlangıç yap",
-          "{topic} seni bir adım öne geçirecek"
-        ],
-        descriptions: [
-          "{topic} konusunda sen de adım atabilirsin. Küçük bir başlangıç bile büyük değişim yaratır.",
-          "Bu video {topic} hakkında bakış açını değiştirebilir.",
-          "{topic} zor görünebilir ama imkansız değil."
-        ],
-        hooks: [
-          "{topic} hayatını değiştirebilir.",
-          "Bugün {topic} için bir adım at.",
-          "{topic} sandığından daha mümkün."
-        ]
-      },
-      "Şaşırtıcı": {
-        titles: [
-          "{topic} hakkında bunu beklemiyordum",
-          "{topic} beni şok etti",
-          "{topic} sandığımızdan çok farklı"
-        ],
-        descriptions: [
-          "{topic} hakkında böyle bir şey olacağını hiç düşünmemiştim.",
-          "Bu bilgi ortaya çıktıktan sonra {topic}’ya bakışım değişti.",
-          "{topic} ile ilgili gerçekler bazen tahmin edilenden çok farklı olabiliyor."
-        ],
-        hooks: [
-          "{topic} hakkında bunu beklemiyordum.",
-          "{topic} beni ciddi anlamda şaşırttı.",
-          "Bunu öğrenince {topic}’ya bakışın değişecek."
-        ]
-      }
-    };
+<script>
+const templates = {
+  "Bilgilendirici": {
+    titles: [
+      "{topic} hakkında bilmen gereken 3 şey",
+      "{topic} gerçekten nedir?",
+      "{topic} neden bu kadar önemli?"
+    ],
+    descriptions: [
+      "Bu videoda {topic} hakkında bilmen gereken en önemli noktaları kısa ve net şekilde anlattım.",
+      "{topic} ile ilgili en çok merak edilen soruların cevapları bu videoda.",
+      "{topic} düşündüğünden çok daha önemli olabilir."
+    ],
+    hooks: [
+      "{topic} hakkında çoğu kişi bunu bilmiyor.",
+      "Bu bilgiyi öğrendikten sonra {topic}’ya bakışın değişecek.",
+      "60 saniyede {topic} gerçeği."
+    ]
+  },
+  "Komik": {
+    titles: [
+      "{topic} ama komik versiyonu 😅",
+      "{topic} böyle olsaydı… 😂",
+      "{topic} beklediğim gibi çıkmadı"
+    ],
+    descriptions: [
+      "{topic} hakkında bu kadar güleceğimi ben de beklemiyordum 😄",
+      "Bu video tamamen eğlence amaçlıdır 😅",
+      "{topic} konusu ciddi ama biz biraz dağıttık 😂"
+    ],
+    hooks: [
+      "{topic} böyle olamaz ya 😅",
+      "{topic} görünce koptum 😂",
+      "{topic} = tam bir kaos"
+    ]
+  },
+  "Gizemli": {
+    titles: [
+      "{topic} hakkında kimsenin konuşmadığı gerçek…",
+      "{topic} ile ilgili çok tuhaf bir şey var",
+      "{topic} sandığın gibi olmayabilir"
+    ],
+    descriptions: [
+      "{topic} ile ilgili ortaya çıkan bu detay gerçekten garip…",
+      "Bu videoyu izledikten sonra {topic} hakkında fikrin değişebilir.",
+      "{topic} ile ilgili herkesin atladığı bir nokta var."
+    ],
+    hooks: [
+      "{topic} ile ilgili çok garip bir şey var…",
+      "{topic} hakkında sana kimse bunu söylemedi.",
+      "{topic} sandığın gibi değil."
+    ]
+  },
+  "Motivasyon": {
+    titles: [
+      "{topic} hayatını değiştirebilir",
+      "{topic} ile yeni bir başlangıç yap",
+      "{topic} seni bir adım öne geçirecek"
+    ],
+    descriptions: [
+      "{topic} konusunda sen de adım atabilirsin. Küçük bir başlangıç bile büyük değişim yaratır.",
+      "Bu video {topic} hakkında bakış açını değiştirebilir.",
+      "{topic} zor görünebilir ama imkansız değil."
+    ],
+    hooks: [
+      "{topic} hayatını değiştirebilir.",
+      "Bugün {topic} için bir adım at.",
+      "{topic} sandığından daha mümkün."
+    ]
+  },
+  "Şaşırtıcı": {
+    titles: [
+      "{topic} hakkında bunu beklemiyordum",
+      "{topic} beni şok etti",
+      "{topic} sandığımızdan çok farklı"
+    ],
+    descriptions: [
+      "{topic} hakkında böyle bir şey olacağını hiç düşünmemiştim.",
+      "Bu bilgi ortaya çıktıktan sonra {topic}’ya bakışım değişti.",
+      "{topic} ile ilgili gerçekler bazen tahmin edilenden çok farklı olabiliyor."
+    ],
+    hooks: [
+      "{topic} hakkında bunu beklemiyordum.",
+      "{topic} beni ciddi anlamda şaşırttı.",
+      "Bunu öğrenince {topic}’ya bakışın değişecek."
+    ]
+  }
+};
 
-    function pickOne(arr) {
-      return arr[Math.floor(Math.random() * arr.length)];
-    }
+function pickOne(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
-    function fill(template, topic) {
-      return template.replaceAll("{topic}", topic.trim());
-    }
+function fill(template, topic) {
+  return template.replaceAll("{topic}", topic.trim());
+}
 
-    document.getElementById("toolForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+document.getElementById("toolForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-      const topic = document.getElementById("topic").value;
-      const tone = document.getElementById("tone").value;
-      const language = document.getElementById("language").value;
+  const topic = document.getElementById("topic").value;
+  const tone = document.getElementById("tone").value;
+  const language = document.getElementById("language").value;
 
-      const t = templates[tone];
+  const t = templates[tone];
 
-      const title1 = fill(pickOne(t.titles), topic);
-      const title2 = fill(pickOne(t.titles), topic);
-      const title3 = fill(pickOne(t.titles), topic);
+  const title1 = fill(pickOne(t.titles), topic);
+  const title2 = fill(pickOne(t.titles), topic);
+  const title3 = fill(pickOne(t.titles), topic);
 
-      const description = fill(pickOne(t.descriptions), topic);
-      const hook = fill(pickOne(t.hooks), topic);
+  const description = fill(pickOne(t.descriptions), topic);
+  const hook = fill(pickOne(t.hooks), topic);
 
-      document.getElementById("result").innerHTML = `
-        <h2>Sonuç (${language})</h2>
+  document.getElementById("result").innerHTML = `
+    <h2>Sonuç (${language})</h2>
 
-        <h3>Hook</h3>
-        <p>${hook}</p>
+    <h3>Hook</h3>
+    <pre id="outHook">${hook}</pre>
+    <button onclick="navigator.clipboard.writeText(document.getElementById('outHook').innerText)">Hook kopyala</button>
 
-        <h3>Başlıklar</h3>
-        <ol>
-          <li>${title1}</li>
-          <li>${title2}</li>
-          <li>${title3}</li>
-        </ol>
+    <h3>Başlıklar</h3>
+    <pre id="outTitles">${title1}\n${title2}\n${title3}</pre>
+    <button onclick="navigator.clipboard.writeText(document.getElementById('outTitles').innerText)">Başlıkları kopyala</button>
 
-        <h3>Açıklama</h3>
-        <p>${description}</p>
-      `;
-    });
-  </script>
+    <h3>Açıklama</h3>
+    <pre id="outDesc">${description}</pre>
+    <button onclick="navigator.clipboard.writeText(document.getElementById('outDesc').innerText)">Açıklamayı kopyala</button>
+  `;
+});
+</script>
 
 </body>
 </html>

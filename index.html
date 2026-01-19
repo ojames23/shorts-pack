@@ -11,14 +11,14 @@
 
   <form id="toolForm">
     <div>
-      <label>Video konusu:</label><br>
+      <label id="lblTopic">Video konusu:</label><br>
       <input type="text" id="topic" placeholder="Örn: Kediler neden mırlar?" required>
     </div>
 
     <br>
 
     <div>
-      <label>Ton:</label><br>
+      <label id="lblTone">Ton:</label><br>
       <select id="tone">
         <option>Bilgilendirici</option>
         <option>Komik</option>
@@ -31,7 +31,7 @@
     <br>
 
     <div>
-      <label>Dil:</label><br>
+      <label id="lblLang">Dil:</label><br>
       <select id="language">
         <option>TR</option>
         <option>EN</option>
@@ -40,7 +40,7 @@
 
     <br>
 
-    <button type="submit">Üret</button>
+    <button id="btnGenerate" type="submit">Üret</button>
   </form>
 
   <div id="result" style="margin-top:30px;"></div>
@@ -317,6 +317,19 @@ document.getElementById("toolForm").addEventListener("submit", function(e) {
     <pre id="outTags">${hashtags.join(" ")}</pre>
     <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outTags').innerText)">Copy hashtags</button>
   `;
+});
+  function applyUiLanguage(lang) {
+  const isEN = lang === "EN";
+  document.getElementById("lblTopic").innerText = isEN ? "Video topic:" : "Video konusu:";
+  document.getElementById("lblTone").innerText  = isEN ? "Tone:" : "Ton:";
+  document.getElementById("lblLang").innerText  = isEN ? "Language:" : "Dil:";
+  document.getElementById("btnGenerate").innerText = isEN ? "Generate" : "Üret";
+}
+
+applyUiLanguage(document.getElementById("language").value);
+
+document.getElementById("language").addEventListener("change", function() {
+  applyUiLanguage(this.value);
 });
 </script>
 

@@ -4,6 +4,27 @@
   <meta charset="UTF-8">
   <title>Shorts Pack</title>
 </head>
+<script>
+  // Tonlara göre basit şablonlar (şimdilik sadece başlık + açıklama + hook)
+  const templates = {
+    "Bilgilendirici": {
+      titles: [
+        "{topic} hakkında bilmen gereken 3 şey",
+        "{topic} gerçekten nedir?",
+        "{topic} neden bu kadar önemli?"
+      ],
+      descriptions: [
+        "Bu videoda {topic} hakkında bilmen gereken en önemli noktaları kısa ve net şekilde anlattım.",
+        "{topic} ile ilgili en çok merak edilen soruların cevapları bu videoda.",
+        "{topic} düşündüğünden çok daha önemli olabilir."
+      ],
+      hooks: [
+        "{topic} hakkında çoğu kişi bunu bilmiyor.",
+        "Bu bilgiyi öğrendikten sonra {topic}’ya bakışın değişecek.",
+        "60 saniyede {topic} gerçeği."
+      ]
+    },
+    "Komik": {
 <body>
 
   <h1>Shorts Pack</h1>

@@ -46,106 +46,216 @@
   <div id="result" style="margin-top:30px;"></div>
 
 <script>
-/* --- HASHTAG POOLS (TR) --- */
-const hashtagPoolsTR = {
-  general: ["#shorts", "#youtubeshorts", "#youtube", "#keşfet", "#video"],
-  tones: {
-    "Bilgilendirici": ["#bilgi", "#öğren", "#faydalı", "#bilgilen", "#bilgiler"],
-    "Komik": ["#komik", "#eğlence", "#mizah", "#gülmek", "#caps"],
-    "Gizemli": ["#gizem", "#sır", "#bilinmeyen", "#ilginç", "#gerçekler"],
-    "Motivasyon": ["#motivasyon", "#başarı", "#azim", "#hedef", "#kendinigeliştir"],
-    "Şaşırtıcı": ["#şaşırtıcı", "#inanılmaz", "#şok", "#vaybe", "#tersköşe"]
+/* =========================
+   HASHTAG POOLS
+========================= */
+const hashtagPools = {
+  TR: {
+    general: ["#shorts", "#youtubeshorts", "#youtube", "#keşfet", "#video"],
+    tones: {
+      "Bilgilendirici": ["#bilgi", "#öğren", "#faydalı", "#bilgilen", "#bilgiler"],
+      "Komik": ["#komik", "#eğlence", "#mizah", "#gülmek", "#caps"],
+      "Gizemli": ["#gizem", "#sır", "#bilinmeyen", "#ilginç", "#gerçekler"],
+      "Motivasyon": ["#motivasyon", "#başarı", "#azim", "#hedef", "#kendinigeliştir"],
+      "Şaşırtıcı": ["#şaşırtıcı", "#inanılmaz", "#şok", "#vaybe", "#tersköşe"]
+    }
+  },
+  EN: {
+    general: ["#shorts", "#youtubeshorts", "#youtube", "#explore", "#video"],
+    tones: {
+      "Bilgilendirici": ["#facts", "#learn", "#education", "#didyouknow", "#knowledge"],
+      "Komik": ["#funny", "#comedy", "#lol", "#meme", "#humor"],
+      "Gizemli": ["#mystery", "#secrets", "#unknown", "#creepy", "#mindblown"],
+      "Motivasyon": ["#motivation", "#success", "#mindset", "#goals", "#discipline"],
+      "Şaşırtıcı": ["#shocking", "#unbelievable", "#wow", "#plotTwist", "#surprising"]
+    }
   }
 };
 
-const templates = {
-  "Bilgilendirici": {
-    titles: [
-      "{topic} hakkında bilmen gereken 3 şey",
-      "{topic} gerçekten nedir?",
-      "{topic} neden bu kadar önemli?"
-    ],
-    descriptions: [
-      "Bu videoda {topic} hakkında bilmen gereken en önemli noktaları kısa ve net şekilde anlattım.",
-      "{topic} ile ilgili en çok merak edilen soruların cevapları bu videoda.",
-      "{topic} düşündüğünden çok daha önemli olabilir."
-    ],
-    hooks: [
-      "{topic} hakkında çoğu kişi bunu bilmiyor.",
-      "Bu bilgiyi öğrendikten sonra {topic}’ya bakışın değişecek.",
-      "60 saniyede {topic} gerçeği."
-    ]
+/* =========================
+   TEMPLATES (TR + EN)
+========================= */
+const templatesByLang = {
+  TR: {
+    "Bilgilendirici": {
+      titles: [
+        "{topic} hakkında bilmen gereken 3 şey",
+        "{topic} gerçekten nedir?",
+        "{topic} neden bu kadar önemli?"
+      ],
+      descriptions: [
+        "Bu videoda {topic} hakkında bilmen gereken en önemli noktaları kısa ve net şekilde anlattım.",
+        "{topic} ile ilgili en çok merak edilen soruların cevapları bu videoda.",
+        "{topic} düşündüğünden çok daha önemli olabilir."
+      ],
+      hooks: [
+        "{topic} hakkında çoğu kişi bunu bilmiyor.",
+        "Bu bilgiyi öğrendikten sonra {topic}’ya bakışın değişecek.",
+        "60 saniyede {topic} gerçeği."
+      ]
+    },
+    "Komik": {
+      titles: [
+        "{topic} ama komik versiyonu 😅",
+        "{topic} böyle olsaydı… 😂",
+        "{topic} beklediğim gibi çıkmadı"
+      ],
+      descriptions: [
+        "{topic} hakkında bu kadar güleceğimi ben de beklemiyordum 😄",
+        "Bu video tamamen eğlence amaçlıdır 😅",
+        "{topic} konusu ciddi ama biz biraz dağıttık 😂"
+      ],
+      hooks: [
+        "{topic} böyle olamaz ya 😅",
+        "{topic} görünce koptum 😂",
+        "{topic} = tam bir kaos"
+      ]
+    },
+    "Gizemli": {
+      titles: [
+        "{topic} hakkında kimsenin konuşmadığı gerçek…",
+        "{topic} ile ilgili çok tuhaf bir şey var",
+        "{topic} sandığın gibi olmayabilir"
+      ],
+      descriptions: [
+        "{topic} ile ilgili ortaya çıkan bu detay gerçekten garip…",
+        "Bu videoyu izledikten sonra {topic} hakkında fikrin değişebilir.",
+        "{topic} ile ilgili herkesin atladığı bir nokta var."
+      ],
+      hooks: [
+        "{topic} ile ilgili çok garip bir şey var…",
+        "{topic} hakkında sana kimse bunu söylemedi.",
+        "{topic} sandığın gibi değil."
+      ]
+    },
+    "Motivasyon": {
+      titles: [
+        "{topic} hayatını değiştirebilir",
+        "{topic} ile yeni bir başlangıç yap",
+        "{topic} seni bir adım öne geçirecek"
+      ],
+      descriptions: [
+        "{topic} konusunda sen de adım atabilirsin. Küçük bir başlangıç bile büyük değişim yaratır.",
+        "Bu video {topic} hakkında bakış açını değiştirebilir.",
+        "{topic} zor görünebilir ama imkansız değil."
+      ],
+      hooks: [
+        "{topic} hayatını değiştirebilir.",
+        "Bugün {topic} için bir adım at.",
+        "{topic} sandığından daha mümkün."
+      ]
+    },
+    "Şaşırtıcı": {
+      titles: [
+        "{topic} hakkında bunu beklemiyordum",
+        "{topic} beni şok etti",
+        "{topic} sandığımızdan çok farklı"
+      ],
+      descriptions: [
+        "{topic} hakkında böyle bir şey olacağını hiç düşünmemiştim.",
+        "Bu bilgi ortaya çıktıktan sonra {topic}’ya bakışım değişti.",
+        "{topic} ile ilgili gerçekler bazen tahmin edilenden çok farklı olabiliyor."
+      ],
+      hooks: [
+        "{topic} hakkında bunu beklemiyordum.",
+        "{topic} beni ciddi anlamda şaşırttı.",
+        "Bunu öğrenince {topic}’ya bakışın değişecek."
+      ]
+    }
   },
-  "Komik": {
-    titles: [
-      "{topic} ama komik versiyonu 😅",
-      "{topic} böyle olsaydı… 😂",
-      "{topic} beklediğim gibi çıkmadı"
-    ],
-    descriptions: [
-      "{topic} hakkında bu kadar güleceğimi ben de beklemiyordum 😄",
-      "Bu video tamamen eğlence amaçlıdır 😅",
-      "{topic} konusu ciddi ama biz biraz dağıttık 😂"
-    ],
-    hooks: [
-      "{topic} böyle olamaz ya 😅",
-      "{topic} görünce koptum 😂",
-      "{topic} = tam bir kaos"
-    ]
-  },
-  "Gizemli": {
-    titles: [
-      "{topic} hakkında kimsenin konuşmadığı gerçek…",
-      "{topic} ile ilgili çok tuhaf bir şey var",
-      "{topic} sandığın gibi olmayabilir"
-    ],
-    descriptions: [
-      "{topic} ile ilgili ortaya çıkan bu detay gerçekten garip…",
-      "Bu videoyu izledikten sonra {topic} hakkında fikrin değişebilir.",
-      "{topic} ile ilgili herkesin atladığı bir nokta var."
-    ],
-    hooks: [
-      "{topic} ile ilgili çok garip bir şey var…",
-      "{topic} hakkında sana kimse bunu söylemedi.",
-      "{topic} sandığın gibi değil."
-    ]
-  },
-  "Motivasyon": {
-    titles: [
-      "{topic} hayatını değiştirebilir",
-      "{topic} ile yeni bir başlangıç yap",
-      "{topic} seni bir adım öne geçirecek"
-    ],
-    descriptions: [
-      "{topic} konusunda sen de adım atabilirsin. Küçük bir başlangıç bile büyük değişim yaratır.",
-      "Bu video {topic} hakkında bakış açını değiştirebilir.",
-      "{topic} zor görünebilir ama imkansız değil."
-    ],
-    hooks: [
-      "{topic} hayatını değiştirebilir.",
-      "Bugün {topic} için bir adım at.",
-      "{topic} sandığından daha mümkün."
-    ]
-  },
-  "Şaşırtıcı": {
-    titles: [
-      "{topic} hakkında bunu beklemiyordum",
-      "{topic} beni şok etti",
-      "{topic} sandığımızdan çok farklı"
-    ],
-    descriptions: [
-      "{topic} hakkında böyle bir şey olacağını hiç düşünmemiştim.",
-      "Bu bilgi ortaya çıktıktan sonra {topic}’ya bakışım değişti.",
-      "{topic} ile ilgili gerçekler bazen tahmin edilenden çok farklı olabiliyor."
-    ],
-    hooks: [
-      "{topic} hakkında bunu beklemiyordum.",
-      "{topic} beni ciddi anlamda şaşırttı.",
-      "Bunu öğrenince {topic}’ya bakışın değişecek."
-    ]
+
+  EN: {
+    "Bilgilendirici": {
+      titles: [
+        "3 things you should know about {topic}",
+        "What is {topic}, really?",
+        "Why {topic} matters more than you think"
+      ],
+      descriptions: [
+        "In this short video, I break down the key points about {topic} in a simple way.",
+        "Here are the most asked questions about {topic}, answered fast.",
+        "{topic} might be way more important than you think."
+      ],
+      hooks: [
+        "Most people don’t know this about {topic}.",
+        "After this, your view on {topic} will change.",
+        "{topic} explained in 60 seconds."
+      ]
+    },
+    "Komik": {
+      titles: [
+        "{topic} but make it funny 😅",
+        "If {topic} was like this… 😂",
+        "{topic} was NOT what I expected"
+      ],
+      descriptions: [
+        "I didn’t expect {topic} to be this funny 😄",
+        "This video is just for fun 😅",
+        "{topic} is serious… but we kind of ruined it 😂"
+      ],
+      hooks: [
+        "No way {topic} is like this 😅",
+        "{topic} made me laugh so hard 😂",
+        "{topic} = pure chaos"
+      ]
+    },
+    "Gizemli": {
+      titles: [
+        "The truth no one talks about: {topic}",
+        "There’s something strange about {topic}",
+        "{topic} might not be what you think"
+      ],
+      descriptions: [
+        "This detail about {topic} is honestly weird…",
+        "After this, you might see {topic} differently.",
+        "There’s one thing everyone misses about {topic}."
+      ],
+      hooks: [
+        "There’s something weird about {topic}…",
+        "No one told you this about {topic}.",
+        "{topic} isn’t what you think."
+      ]
+    },
+    "Motivasyon": {
+      titles: [
+        "{topic} can change your life",
+        "Start {topic} today",
+        "{topic} will put you ahead"
+      ],
+      descriptions: [
+        "You can take a step toward {topic} today—small starts create big change.",
+        "This might change how you see {topic}. Keep going.",
+        "{topic} looks hard, but it’s not impossible."
+      ],
+      hooks: [
+        "{topic} can change your life.",
+        "Take one step toward {topic} today.",
+        "{topic} is more possible than you think."
+      ]
+    },
+    "Şaşırtıcı": {
+      titles: [
+        "I did NOT expect this about {topic}",
+        "{topic} shocked me",
+        "{topic} is way different than we thought"
+      ],
+      descriptions: [
+        "I never thought {topic} would turn out like this.",
+        "After learning this, my view on {topic} changed.",
+        "Sometimes the truth about {topic} is very different than expected."
+      ],
+      hooks: [
+        "I did not expect this about {topic}.",
+        "{topic} seriously surprised me.",
+        "This will change how you see {topic}."
+      ]
+    }
   }
 };
 
+/* =========================
+   HELPERS
+========================= */
 function pickOne(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -154,20 +264,24 @@ function fill(template, topic) {
   return template.replaceAll("{topic}", topic.trim());
 }
 
-function normalizeTopicToTag(topic) {
-  // Basit normalize: boşlukları sil, küçük harf yap.
-  // Türkçe karakterleri aynen bırakıyoruz (şimdilik).
-  return "#" + topic.trim().toLowerCase().replaceAll(" ", "");
+function normalizeTopicToTag(topic, lang) {
+  const trimmed = topic.trim();
+  if (!trimmed) return "";
+  // EN için boşlukları silip küçült. TR için de aynı, karakterleri koruyoruz.
+  return "#" + trimmed.toLowerCase().replaceAll(" ", "");
 }
 
+/* =========================
+   MAIN
+========================= */
 document.getElementById("toolForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   const topic = document.getElementById("topic").value;
   const tone = document.getElementById("tone").value;
-  const language = document.getElementById("language").value;
+  const language = document.getElementById("language").value; // "TR" | "EN"
 
-  const t = templates[tone];
+  const t = templatesByLang[language][tone];
 
   const title1 = fill(pickOne(t.titles), topic);
   const title2 = fill(pickOne(t.titles), topic);
@@ -176,33 +290,36 @@ document.getElementById("toolForm").addEventListener("submit", function(e) {
   const description = fill(pickOne(t.descriptions), topic);
   const hook = fill(pickOne(t.hooks), topic);
 
-  // Hashtag (TR): 5 genel + 1 konu etiketi + 5 ton = 11 (kalanı genel/tondan tamamlıyoruz)
-  // Basitçe havuzları birleştirip 15'e kırpıyoruz.
-  const topicTag = normalizeTopicToTag(topic);
-  const base = [...hashtagPoolsTR.general, topicTag, ...hashtagPoolsTR.tones[tone]];
-  const hashtags = [...base, ...hashtagPoolsTR.general, ...hashtagPoolsTR.tones[tone]].slice(0, 15);
+  // Hashtags (dile göre)
+  const pools = hashtagPools[language];
+  const topicTag = normalizeTopicToTag(topic, language);
+
+  // 15 = 5 general + 1 topic + 5 tone + kalan 4'ü general/tone tekrarıyla tamamla (basit MVP)
+  const base = [...pools.general, topicTag, ...pools.tones[tone]].filter(Boolean);
+  const hashtags = [...base, ...pools.general, ...pools.tones[tone]].slice(0, 15);
 
   document.getElementById("result").innerHTML = `
-    <h2>Sonuç (${language})</h2>
+    <h2>Result (${language})</h2>
 
     <h3>Hook</h3>
     <pre id="outHook">${hook}</pre>
-    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outHook').innerText)">Hook kopyala</button>
+    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outHook').innerText)">Copy hook</button>
 
-    <h3>Başlıklar</h3>
+    <h3>Titles</h3>
     <pre id="outTitles">${title1}\n${title2}\n${title3}</pre>
-    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outTitles').innerText)">Başlıkları kopyala</button>
+    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outTitles').innerText)">Copy titles</button>
 
-    <h3>Açıklama</h3>
+    <h3>Description</h3>
     <pre id="outDesc">${description}</pre>
-    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outDesc').innerText)">Açıklamayı kopyala</button>
+    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outDesc').innerText)">Copy description</button>
 
-    <h3>Hashtagler (TR)</h3>
+    <h3>Hashtags</h3>
     <pre id="outTags">${hashtags.join(" ")}</pre>
-    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outTags').innerText)">Hashtagleri kopyala</button>
+    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outTags').innerText)">Copy hashtags</button>
   `;
 });
 </script>
+
 
 </body>
 </html>

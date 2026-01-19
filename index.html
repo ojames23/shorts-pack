@@ -374,9 +374,11 @@ document.getElementById("toolForm").addEventListener("submit", function(e) {
 
   const t = templatesByLang[language][tone];
 
-  const title1 = fill(pickOne(t.titles), topic);
-  const title2 = fill(pickOne(t.titles), topic);
-  const title3 = fill(pickOne(t.titles), topic);
+const shuffledTitles = [...t.titles].sort(() => 0.5 - Math.random());
+
+const title1 = fill(shuffledTitles[0], topic);
+const title2 = fill(shuffledTitles[1] || shuffledTitles[0], topic);
+const title3 = fill(shuffledTitles[2] || shuffledTitles[0], topic);
 
   const description = fill(pickOne(t.descriptions), topic);
   const hook = fill(pickOne(t.hooks), topic);

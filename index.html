@@ -46,6 +46,18 @@
   <div id="result" style="margin-top:30px;"></div>
 
 <script>
+/* --- HASHTAG POOLS (TR) --- */
+const hashtagPoolsTR = {
+  general: ["#shorts", "#youtubeshorts", "#youtube", "#keşfet", "#video"],
+  tones: {
+    "Bilgilendirici": ["#bilgi", "#öğren", "#faydalı", "#bilgilen", "#bilgiler"],
+    "Komik": ["#komik", "#eğlence", "#mizah", "#gülmek", "#caps"],
+    "Gizemli": ["#gizem", "#sır", "#bilinmeyen", "#ilginç", "#gerçekler"],
+    "Motivasyon": ["#motivasyon", "#başarı", "#azim", "#hedef", "#kendinigeliştir"],
+    "Şaşırtıcı": ["#şaşırtıcı", "#inanılmaz", "#şok", "#vaybe", "#tersköşe"]
+  }
+};
+
 const templates = {
   "Bilgilendirici": {
     titles: [
@@ -142,6 +154,12 @@ function fill(template, topic) {
   return template.replaceAll("{topic}", topic.trim());
 }
 
+function normalizeTopicToTag(topic) {
+  // Basit normalize: boşlukları sil, küçük harf yap.
+  // Türkçe karakterleri aynen bırakıyoruz (şimdilik).
+  return "#" + topic.trim().toLowerCase().replaceAll(" ", "");
+}
+
 document.getElementById("toolForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -158,20 +176,30 @@ document.getElementById("toolForm").addEventListener("submit", function(e) {
   const description = fill(pickOne(t.descriptions), topic);
   const hook = fill(pickOne(t.hooks), topic);
 
+  // Hashtag (TR): 5 genel + 1 konu etiketi + 5 ton = 11 (kalanı genel/tondan tamamlıyoruz)
+  // Basitçe havuzları birleştirip 15'e kırpıyoruz.
+  const topicTag = normalizeTopicToTag(topic);
+  const base = [...hashtagPoolsTR.general, topicTag, ...hashtagPoolsTR.tones[tone]];
+  const hashtags = [...base, ...hashtagPoolsTR.general, ...hashtagPoolsTR.tones[tone]].slice(0, 15);
+
   document.getElementById("result").innerHTML = `
     <h2>Sonuç (${language})</h2>
 
     <h3>Hook</h3>
     <pre id="outHook">${hook}</pre>
-    <button onclick="navigator.clipboard.writeText(document.getElementById('outHook').innerText)">Hook kopyala</button>
+    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outHook').innerText)">Hook kopyala</button>
 
     <h3>Başlıklar</h3>
     <pre id="outTitles">${title1}\n${title2}\n${title3}</pre>
-    <button onclick="navigator.clipboard.writeText(document.getElementById('outTitles').innerText)">Başlıkları kopyala</button>
+    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outTitles').innerText)">Başlıkları kopyala</button>
 
     <h3>Açıklama</h3>
     <pre id="outDesc">${description}</pre>
-    <button onclick="navigator.clipboard.writeText(document.getElementById('outDesc').innerText)">Açıklamayı kopyala</button>
+    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outDesc').innerText)">Açıklamayı kopyala</button>
+
+    <h3>Hashtagler (TR)</h3>
+    <pre id="outTags">${hashtags.join(" ")}</pre>
+    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('outTags').innerText)">Hashtagleri kopyala</button>
   `;
 });
 </script>
